@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Send, CheckCircle, Mail, Phone, MapPin, Clock, ArrowRight } from 'lucide-react';
 import { services } from '@/lib/servicesData';
 
 export default function HomeContactSection() {
@@ -11,43 +11,52 @@ export default function HomeContactSection() {
         phone: '',
         email: '',
         service: 'Marketing as a Service (MaaS)',
-        message: ''
+        message: '',
     });
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-
-        const whatsappMessage = `
-*New Contact Form Submission*
-
-*Name:* ${formData.name}
-*Phone:* ${formData.phone}
-*Email:* ${formData.email}
-*Service Interest:* ${formData.service}
-*Message:* ${formData.message || 'No message provided'}
-        `.trim();
-
-        const encodedMessage = encodeURIComponent(whatsappMessage);
-        const whatsappNumber = '918527664228';
-        window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
-    };
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            if (!res.ok) throw new Error();
+            setSubmitted(true);
+            setFormData({
+                name: '',
+                phone: '',
+                email: '',
+                service: 'Marketing as a Service (MaaS)',
+                message: '',
+            });
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const contactInfo = [
-        { icon: Phone, text: '+91 7489951514', href: 'tel:+917489951514' },
-        { icon: Mail, text: 'renviotechnologies.com', href: 'mailto:renviotechnologies.com' },
-        { icon: MapPin, text: 'Indore, Madhya Pradesh', href: '#' },
+        { icon: Mail, text: 'hello@renvio.com', href: 'mailto:hello@renvio.com' },
+        { icon: Phone, text: '+91 8527 664 228', href: 'tel:+918527664228' },
+        { icon: MapPin, text: 'Dwarka, New Delhi', href: '#' },
         { icon: Clock, text: 'Mon-Fri: 9AM - 7PM', href: '#' },
     ];
 
     return (
-        <section className="py-24 bg-white" id="contact">
+        <section className="py-24 bg-white">
             <div className="container mx-auto px-6 max-w-7xl">
                 
                 {/* Header */}
@@ -68,9 +77,9 @@ export default function HomeContactSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+                        className="text-4xl md:text-5xl font-bold text-gray-900 mb-3"
                     >
-                        Ready to Start Your Project?
+                        Let's Build Something Great
                     </motion.h2>
                     
                     <motion.p
@@ -78,16 +87,16 @@ export default function HomeContactSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="text-gray-500 max-w-2xl mx-auto"
+                        className="text-gray-500 max-w-xl mx-auto"
                     >
-                        Whether you need a full digital transformation or a specific marketing campaign, 
-                        our team is ready to help you scale.
+                        Tell us about your project and we'll get back to you within 24 hours.
                     </motion.p>
                 </div>
 
+                {/* Contact Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     
-                    {/* Contact Info Cards */}
+                    {/* Left - Contact Info */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -95,13 +104,13 @@ export default function HomeContactSection() {
                         transition={{ duration: 0.5 }}
                         className="lg:col-span-1"
                     >
-                        <div className="bg-gray-900 rounded-2xl p-6 text-white h-full">
-                            <h3 className="text-xl font-bold mb-4">Contact Information</h3>
-                            <p className="text-gray-300 text-sm mb-6">
-                                Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                        <div className="bg-gray-900 rounded-2xl p-8 text-white h-full">
+                            <h3 className="text-xl font-bold mb-3">Let's Talk</h3>
+                            <p className="text-gray-400 text-sm mb-6">
+                                We're here to answer your questions and help you grow your brand.
                             </p>
                             
-                            <div className="space-y-4">
+                            <div className="space-y-4 mb-8">
                                 {contactInfo.map((item, i) => (
                                     <a
                                         key={i}
@@ -116,19 +125,17 @@ export default function HomeContactSection() {
                                 ))}
                             </div>
 
-                            {/* Social Proof */}
-                            <div className="mt-6 pt-6 border-t border-gray-800">
-                                <div className="flex items-center gap-2 mb-3">
-                                    {[1, 2, 3, 4, 5].map((i) => (
-                                        <span key={i} className="text-yellow-500 text-sm">★</span>
-                                    ))}
-                                    <span className="text-xs text-gray-400">4.9/5 from 50+ reviews</span>
+                            <div className="pt-6 border-t border-gray-800">
+                                <p className="text-xs text-gray-500 mb-3">Trusted by</p>
+                                <div className="flex items-center gap-2">
+                                    <span className="text-yellow-500 text-sm">★★★★★</span>
+                                    <span className="text-xs text-gray-400">4.9/5 from 50+ clients</span>
                                 </div>
                             </div>
                         </div>
                     </motion.div>
 
-                    {/* Form */}
+                    {/* Right - Form */}
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -136,102 +143,106 @@ export default function HomeContactSection() {
                         transition={{ duration: 0.5, delay: 0.1 }}
                         className="lg:col-span-2"
                     >
-                        <div className="bg-gray-50 rounded-2xl p-6 md:p-8">
-                            <form onSubmit={handleSubmit} className="space-y-5">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                    <div>
-                                        <label htmlFor="name" className="block text-xs font-bold text-gray-700 mb-1 uppercase tracking-wide">
-                                            Name *
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="name"
-                                            name="name"
-                                            required
-                                            value={formData.name}
-                                            onChange={handleChange}
-                                            className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-gray-800 transition-colors text-sm"
-                                            placeholder="John Doe"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label htmlFor="phone" className="block text-xs font-bold text-gray-700 mb-1 uppercase tracking-wide">
-                                            Phone *
-                                        </label>
-                                        <input
-                                            type="tel"
-                                            id="phone"
-                                            name="phone"
-                                            required
-                                            value={formData.phone}
-                                            onChange={handleChange}
-                                            className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-gray-800 transition-colors text-sm"
-                                            placeholder="+91..."
-                                        />
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label htmlFor="email" className="block text-xs font-bold text-gray-700 mb-1 uppercase tracking-wide">
-                                        Email *
-                                    </label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        required
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-gray-800 transition-colors text-sm"
-                                        placeholder="john@company.com"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label htmlFor="service" className="block text-xs font-bold text-gray-700 mb-1 uppercase tracking-wide">
-                                        Service Interest
-                                    </label>
-                                    <select
-                                        id="service"
-                                        name="service"
-                                        value={formData.service}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-gray-800 transition-colors text-gray-600 text-sm"
-                                    >
-                                        <option>Marketing as a Service (MaaS)</option>
-                                        {services.map((service) => (
-                                            <option key={service.id} value={service.title}>
-                                                {service.title}
-                                            </option>
-                                        ))}
-                                        <option>Other</option>
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <label htmlFor="message" className="block text-xs font-bold text-gray-700 mb-1 uppercase tracking-wide">
-                                        Message
-                                    </label>
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        rows={4}
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-gray-800 transition-colors resize-none text-sm"
-                                        placeholder="Tell us about your project..."
-                                    />
-                                </div>
-
-                                <button
-                                    type="submit"
-                                    className="w-full py-3 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition-colors flex items-center justify-center gap-2"
+                        <div className="bg-gray-50 rounded-2xl p-8">
+                            {submitted ? (
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    className="flex flex-col items-center justify-center text-center py-12 gap-4"
                                 >
-                                    Send Message
-                                    <Send size={18} />
-                                </button>
-                            </form>
+                                    <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
+                                        <CheckCircle className="w-8 h-8 text-green-600" />
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-gray-900">Message Received!</h3>
+                                    <p className="text-gray-500 text-sm max-w-sm">
+                                        Thanks for contacting us. Our team will get back to you within 24 hours.
+                                    </p>
+                                    <button
+                                        onClick={() => setSubmitted(false)}
+                                        className="mt-4 text-sm text-gray-600 hover:text-gray-900 transition"
+                                    >
+                                        Send another message →
+                                    </button>
+                                </motion.div>
+                            ) : (
+                                <form onSubmit={handleSubmit} className="space-y-5">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="block text-xs font-semibold text-gray-700 mb-1 uppercase tracking-wide">Name *</label>
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                required
+                                                value={formData.name}
+                                                onChange={handleChange}
+                                                placeholder="John Doe"
+                                                className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-gray-800 transition text-sm"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-semibold text-gray-700 mb-1 uppercase tracking-wide">Phone *</label>
+                                            <input
+                                                type="tel"
+                                                name="phone"
+                                                required
+                                                value={formData.phone}
+                                                onChange={handleChange}
+                                                placeholder="+91..."
+                                                className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-gray-800 transition text-sm"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-xs font-semibold text-gray-700 mb-1 uppercase tracking-wide">Email *</label>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            required
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            placeholder="john@company.com"
+                                            className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-gray-800 transition text-sm"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-xs font-semibold text-gray-700 mb-1 uppercase tracking-wide">Service Interest</label>
+                                        <select
+                                            name="service"
+                                            value={formData.service}
+                                            onChange={handleChange}
+                                            className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-gray-800 transition text-sm text-gray-700"
+                                        >
+                                            <option>Marketing as a Service (MaaS)</option>
+                                            {services.map((s) => (
+                                                <option key={s.id}>{s.title}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-xs font-semibold text-gray-700 mb-1 uppercase tracking-wide">Message</label>
+                                        <textarea
+                                            name="message"
+                                            rows={4}
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            placeholder="Tell us about your project..."
+                                            className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-gray-800 transition text-sm resize-none"
+                                        />
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                        className="w-full bg-gray-900 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-gray-800 transition disabled:opacity-50"
+                                    >
+                                        {isSubmitting ? 'Sending...' : 'Send Message'}
+                                        <Send size={16} />
+                                    </button>
+                                </form>
+                            )}
                         </div>
                     </motion.div>
                 </div>
