@@ -41,12 +41,7 @@ const achievements = [
         desc: "Directed and filmed commercial and promotional content, including a chroma ad for Unique Builders, promotional planning for eBay.in, and ad direction for Square Animation Company.",
         year: "2018"
     },
-    {
-        icon: TrendingUp,
-        title: "National Theatre Actor",
-        desc: "Represented Delhi at the national level as a theatre actor, demonstrating recognized performance skills and national-level visibility.",
-        year: "2017"
-    }
+   
 ];
 
 export default function AwardsGrid() {

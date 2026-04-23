@@ -15,6 +15,7 @@ import WhatsAppFloat from "./components/WhatsAppFloat";
 import PricingSection from "./components/PricingSection";
 import HomeContactSection from "./components/HomeContactSection";
 import CreativeShowcase from "./components/CreativeShowcase";
+import BookAppointmentSection from "./components/BookAppointmentSection";
 
 
 export default async function Home() {
@@ -27,6 +28,7 @@ export default async function Home() {
       <StartupFeature />
       <ServicesSection />
       <PricingSection />
+       <BookAppointmentSection />
       <GlobalIndustries />
       <CreativeShowcase />
       <AwardsGrid />
