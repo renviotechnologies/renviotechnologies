@@ -16,6 +16,8 @@ import PricingSection from "./components/PricingSection";
 import HomeContactSection from "./components/HomeContactSection";
 import CreativeShowcase from "./components/CreativeShowcase";
 import BookAppointmentSection from "./components/BookAppointmentSection";
+import JohnSection from "./components/JohnSection"; // ← ADD THIS
+import JohnFloat from "./components/Johnfloat";
 
 
 export default async function Home() {
@@ -28,7 +30,7 @@ export default async function Home() {
       <StartupFeature />
       <ServicesSection />
       <PricingSection />
-       <BookAppointmentSection />
+      <BookAppointmentSection />
       <GlobalIndustries />
       <CreativeShowcase />
       <AwardsGrid />
@@ -36,12 +38,13 @@ export default async function Home() {
       <AboutSection />
       <CertificationsSection />
       <Testimonials />
+      <JohnFloat/>
       <ReviewsSection />
       <HomeContactSection />
 
       {/* Floating WhatsApp Components */}
-      <WhatsAppMascot />
-      <WhatsAppFloat />
+      {/* <WhatsAppMascot /> */}
+      <WhatsAppFloat /> 
     </main>
   );
 }
