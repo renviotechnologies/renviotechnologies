@@ -44,22 +44,33 @@ Guidelines:
 - When discussing services, connect them to real business outcomes.
 - Never oversell — advise like a trusted partner, not a salesperson.
 - If a client's need spans multiple services, map the full solution clearly.
-- Always position ${BRAND.name} as the premium, reliable choice for serious businesses.`;
+- Always position ${BRAND.name} as the premium, reliable choice for serious businesses.
+- Keep responses under 200 words. Be sharp, not exhaustive.`;
+
+const FALLBACK_REPLY =
+  "I'm John, your strategic advisor at RenvioTechnologies. I'm momentarily offline, but here's a thought: every great digital presence starts with clarity — clarity of brand, audience, and offer. Reach us on WhatsApp and let's talk strategy!";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const userInput = body.message || body.messages?.pop()?.content || "";
 
-    if (!process.env.GROQ_API_KEY) {
-      console.warn("GROQ_API_KEY is not set. Using fallback response.");
-      return NextResponse.json({
-        reply: `I'm John, your strategic advisor at RenvioTechnologies. I'm currently in offline mode, but here's a thought: every great digital presence starts with clarity — clarity of brand, audience, and offer. Let's talk when I'm back online.`,
-        response: `I'm John, your strategic advisor at RenvioTechnologies. I'm currently in offline mode, but here's a thought: every great digital presence starts with clarity — clarity of brand, audience, and offer. Let's talk when I'm back online.`,
-      });
+    // Support both { message: "..." } and { messages: [...] }
+    const messages: { role: string; content: string }[] =
+      body.messages && Array.isArray(body.messages) && body.messages.length > 0
+        ? body.messages
+        : [{ role: "user", content: body.message || "" }];
+
+    // Guard: empty input
+    const lastUserContent = messages[messages.length - 1]?.content?.trim();
+    if (!lastUserContent) {
+      return NextResponse.json({ reply: FALLBACK_REPLY });
     }
 
-    const messages = body.messages || [{ role: "user", content: userInput }];
+    // No API key — return friendly fallback, not an error
+    if (!process.env.GROQ_API_KEY) {
+      console.warn("[John] GROQ_API_KEY not set — using fallback.");
+      return NextResponse.json({ reply: FALLBACK_REPLY });
+    }
 
     const groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
@@ -71,24 +82,38 @@ export async function POST(req: NextRequest) {
         model: "llama-3.3-70b-versatile",
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
-          ...messages,
+          ...messages.map((m) => ({ role: m.role, content: m.content })),
         ],
         temperature: 0.7,
-        max_tokens: 1000,
+        max_tokens: 600,
       }),
     });
 
+    // Handle Groq-level errors (rate limit, bad key, model error)
     if (!groqRes.ok) {
-      const errorData = await groqRes.json();
-      throw new Error(errorData.error?.message || "Failed to fetch from Groq API");
+      let errorMsg = `Groq API error ${groqRes.status}`;
+      try {
+        const errData = await groqRes.json();
+        errorMsg = errData?.error?.message || errorMsg;
+      } catch {}
+      console.error("[John] Groq error:", errorMsg);
+
+      // Return a 200 with fallback so the UI doesn't show a crash
+      return NextResponse.json({ reply: FALLBACK_REPLY });
     }
 
     const data = await groqRes.json();
-    const reply = data.choices[0].message.content;
+    const reply: string | undefined = data?.choices?.[0]?.message?.content?.trim();
 
-    return NextResponse.json({ reply, response: reply });
+    if (!reply) {
+      console.error("[John] Groq returned empty content. Full response:", JSON.stringify(data));
+      return NextResponse.json({ reply: FALLBACK_REPLY });
+    }
+
+    return NextResponse.json({ reply });
   } catch (error: any) {
-    console.error("John AI API Error:", error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error("[John] Unhandled error:", error);
+    // Always return 200 with fallback — never let the frontend see a 500
+    return NextResponse.json({ reply: FALLBACK_REPLY });
   }
 }
