@@ -15,7 +15,7 @@ export default function AwardsPage() {
                 description="Our journey is defined by the milestones we've crossed and the impact we've created for our partners."
             />
             <AwardsGrid />
-            <AwardsImpact />
+          
             <TeamCTA />
         </div>
     );

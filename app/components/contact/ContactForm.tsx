@@ -79,7 +79,6 @@ export default function ContactForm() {
 
       <div className="container mx-auto px-6 relative z-10 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-
           {/* ── LEFT SIDE ── */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -103,13 +102,16 @@ export default function ContactForm() {
             </div>
 
             <p className="text-gray-500 text-lg leading-relaxed">
-              Ready to elevate your brand? Share your vision with us, and we'll craft a strategy
-              that delivers measurable results. Your success story starts here.
+              Ready to elevate your brand? Share your vision with us, and we'll
+              craft a strategy that delivers measurable results. Your success
+              story starts here.
             </p>
 
             {/* Benefits */}
             <div className="space-y-3 pt-4">
-              <p className="text-sm font-semibold text-black uppercase tracking-wider">Why choose us?</p>
+              <p className="text-sm font-semibold text-black uppercase tracking-wider">
+                Why choose us?
+              </p>
               <div className="grid grid-cols-2 gap-3">
                 {benefits.map((benefit, index) => (
                   <motion.div
@@ -129,25 +131,35 @@ export default function ContactForm() {
 
             {/* Contact Methods */}
             <div className="space-y-3 pt-4">
-              <p className="text-sm font-semibold text-black uppercase tracking-wider">Reach us directly</p>
+              <p className="text-sm font-semibold text-black uppercase tracking-wider">
+                Reach us directly
+              </p>
               <div className="space-y-3">
-                <a href="tel:+918527664228" className="flex items-center gap-3 text-gray-600 hover:text-black transition-colors group">
+                <a
+                  href="tel:+918527664228"
+                  className="flex items-center gap-3 text-gray-600 hover:text-black transition-colors group"
+                >
                   <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-black transition-colors">
                     <Phone className="w-4 h-4 text-black group-hover:text-white" />
                   </div>
-                  <span>+91-8527664228</span>
+                  <span>+91-9399273310</span>
                 </a>
-                <a href="mailto:teammarktaleworld@gmail.com" className="flex items-center gap-3 text-gray-600 hover:text-black transition-colors group">
+                <a
+                  href="mailto:renviotechnologies@gmail.com"
+                  className="flex items-center gap-3 text-gray-600 hover:text-black transition-colors group"
+                >
                   <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-black transition-colors">
                     <Mail className="w-4 h-4 text-black group-hover:text-white" />
                   </div>
-                  <span>teammarktaleworld@gmail.com</span>
+                  <span>renviotechnologies@gmail.com</span>
                 </a>
                 <div className="flex items-start gap-3 text-gray-600">
                   <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center shrink-0">
                     <MapPin className="w-4 h-4 text-black" />
                   </div>
-                  <span className="text-sm">Plot no. 141, Sec. 14, Dwarka, New Delhi – 110078</span>
+                  <span className="text-sm">
+                    Flat No. 107,Vijar Nagar , Indore, India – 452010
+                  </span>
                 </div>
               </div>
             </div>
@@ -159,15 +171,13 @@ export default function ContactForm() {
               transition={{ duration: 0.3 }}
             >
               <iframe
+                src="https://maps.google.com/maps?q=Apollo+Premier+Indore&t=&z=13&ie=UTF8&iwloc=&output=embed"
                 width="100%"
-                height="100%"
-                frameBorder="0"
-                scrolling="no"
-                marginHeight={0}
-                marginWidth={0}
-                src="https://maps.google.com/maps?q=Plot%20no.%20141,%20Sec.%2014,%20Dwarka,%20New%20Delhi&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                title="Location"
-                className="w-full h-full grayscale hover:grayscale-0 transition-all duration-500"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               />
             </motion.div>
           </motion.div>
@@ -185,8 +195,12 @@ export default function ContactForm() {
             <div className="relative bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
               {/* Form Header */}
               <div className="p-8 border-b border-gray-100">
-                <h3 className="text-2xl font-bold text-black">Thanks for contacting us!</h3>
-                <p className="text-gray-400 mt-1">Fill the form and we'll get back to you within 24h</p>
+                <h3 className="text-2xl font-bold text-black">
+                  Thanks for contacting us!
+                </h3>
+                <p className="text-gray-400 mt-1">
+                  Fill the form and we'll get back to you within 24h
+                </p>
               </div>
 
               {/* SUCCESS STATE */}
@@ -196,9 +210,12 @@ export default function ContactForm() {
                     <CheckCircle className="w-8 h-8 text-green-500" />
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-black mb-2">Message Received!</h4>
+                    <h4 className="text-xl font-bold text-black mb-2">
+                      Message Received!
+                    </h4>
                     <p className="text-gray-500 text-sm leading-relaxed">
-                      Thanks for reaching out. We'll get back to you within 24 hours.
+                      Thanks for reaching out. We'll get back to you within 24
+                      hours.
                     </p>
                   </div>
                   <button
@@ -229,10 +246,10 @@ export default function ContactForm() {
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        onFocus={() => setFocusedField('name')}
+                        onFocus={() => setFocusedField("name")}
                         onBlur={() => setFocusedField(null)}
                         className={`w-full px-4 py-3 bg-gray-50 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-900
-                          ${focusedField === 'name' ? 'border-black bg-white' : 'border-transparent'}`}
+                          ${focusedField === "name" ? "border-black bg-white" : "border-transparent"}`}
                         placeholder="John Doe"
                       />
                     </div>
@@ -246,10 +263,10 @@ export default function ContactForm() {
                         required
                         value={formData.phone}
                         onChange={handleChange}
-                        onFocus={() => setFocusedField('phone')}
+                        onFocus={() => setFocusedField("phone")}
                         onBlur={() => setFocusedField(null)}
                         className={`w-full px-4 py-3 bg-gray-50 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-900
-                          ${focusedField === 'phone' ? 'border-black bg-white' : 'border-transparent'}`}
+                          ${focusedField === "phone" ? "border-black bg-white" : "border-transparent"}`}
                         placeholder="+91 98765 43210"
                       />
                     </div>
@@ -266,10 +283,10 @@ export default function ContactForm() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      onFocus={() => setFocusedField('email')}
+                      onFocus={() => setFocusedField("email")}
                       onBlur={() => setFocusedField(null)}
                       className={`w-full px-4 py-3 bg-gray-50 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-900
-                        ${focusedField === 'email' ? 'border-black bg-white' : 'border-transparent'}`}
+                        ${focusedField === "email" ? "border-black bg-white" : "border-transparent"}`}
                       placeholder="john@company.com"
                     />
                   </div>
@@ -305,10 +322,10 @@ export default function ContactForm() {
                       rows={4}
                       value={formData.message}
                       onChange={handleChange}
-                      onFocus={() => setFocusedField('message')}
+                      onFocus={() => setFocusedField("message")}
                       onBlur={() => setFocusedField(null)}
                       className={`w-full px-4 py-3 bg-gray-50 border-2 rounded-xl focus:outline-none transition-all duration-300 resize-none text-gray-900
-                        ${focusedField === 'message' ? 'border-black bg-white' : 'border-transparent'}`}
+                        ${focusedField === "message" ? "border-black bg-white" : "border-transparent"}`}
                       placeholder="Tell us about your project..."
                     />
                   </div>
@@ -337,7 +354,6 @@ export default function ContactForm() {
               )}
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>

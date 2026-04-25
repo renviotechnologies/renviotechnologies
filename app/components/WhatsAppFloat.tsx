@@ -242,7 +242,7 @@ function WhatsAppIcon() {
 }
 
 export default function WhatsAppFloat() {
-  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918527664228";
+  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917489951514";
   const message = encodeURIComponent("Hi! I would like to know more about your services.");
   const waUrl = `https://wa.me/${phone}?text=${message}`;
 
