@@ -6,8 +6,9 @@ import BestPostersGallery from '@/components/projects/BestPostersGallery';
 import ReelsShowcase from '@/components/projects/ReelsShowcase';
 import BlogsArticles from '@/components/projects/BlogsArticles';
 import InfluencerMarketing from '@/components/projects/InfluencerMarketing';
-import ProjectsGallery from '@/components/projects/ProjectsGallery';
+import ProjectsGallery from '@/components/WorkGallery';
 import TeamCTA from '@/components/TeamCTA';
+import WorkGallery from '@/components/WorkGallery';
 
 export default function ProjectsPage() {
     return (
@@ -15,7 +16,7 @@ export default function ProjectsPage() {
             <VisualJourneyHero />
             <BestPostersGallery />
             <ReelsShowcase />
-            <ProjectsGallery />
+            <WorkGallery/>
             <BlogsArticles />
             <InfluencerMarketing />
             <TeamCTA />

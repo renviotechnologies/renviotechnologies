@@ -6,7 +6,7 @@ import ServiceDeepDive from '@/components/services/ServiceDeepDive';
 
 export default function ServicesPage() {
     return (
-        <div className="bg-white min-h-screen">
+        <div className="bg-black min-h-screen">
             <PageHero
                 title="Services"
                 subtitle="What We Do"

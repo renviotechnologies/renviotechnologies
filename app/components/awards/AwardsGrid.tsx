@@ -2,46 +2,36 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, Award, Star, Mic, Briefcase, Video, Calendar, TrendingUp } from 'lucide-react';
+import { Trophy, Award, Star, Sparkles, Rocket, Target, Globe, Zap, Calendar, TrendingUp } from 'lucide-react';
 
 const achievements = [
     {
         icon: Star,
-        title: "Founder & Scale",
-        desc: "Successfully founded and scaled Renvio, launching multiple brands including Delhi059 by Chef Kanishk, TripTale, Dee Cee Pearls, and Down Ridge.",
-        year: "2024"
+        title: "Founded Renvio Technologies",
+        desc: "Launched Renvio with a vision to revolutionize marketing through AI-powered solutions, helping brands achieve unprecedented growth through innovative strategies.",
+        year: "2025",
+        category: "Company Milestone",
+        impact: "AI-Powered Marketing",
+        highlight: true
     },
     {
         icon: Trophy,
-        title: "Volvo Cars India",
-        desc: "Led high-impact digital marketing for Volvo Cars India, driving campaigns across web, SEO/SEM, email, social media, and display channels.",
-        year: "2023"
-    },
-    {
-        icon: Briefcase,
-        title: "13SQFT.COM",
-        desc: "Spearheaded marketing for 13SQFT.COM (AMS and Procurement Partnership Model), improving product visibility and engagement through structured go-to-market strategies.",
-        year: "2022"
+        title: "Successfully Launched 5+ Brands",
+        desc: "Within our first year, we successfully launched and scaled multiple brands including Delhi059, TripTale, Dee Cee Pearls, and Down Ridge, achieving remarkable market presence.",
+        year: "2025",
+        category: "Brand Launch",
+        impact: "8+ Brands",
+        highlight: false
     },
     {
         icon: Award,
-        title: "Kamalraj Group",
-        desc: "Headed marketing for Kamalraj Group (residential and commercial), increasing client subscriptions and activating new societies through performance-driven digital campaigns.",
-        year: "2021"
-    },
-    {
-        icon: Mic,
-        title: "Mindwise Media Research",
-        desc: "Managed election surveys and a 120-member field team as Senior Zonal Coordinator at Mindwise Media Research Unit (India News), handling large-scale data collection and reporting.",
-        year: "2019"
-    },
-    {
-        icon: Video,
-        title: "Commercial Direction",
-        desc: "Directed and filmed commercial and promotional content, including a chroma ad for Unique Builders, promotional planning for eBay.in, and ad direction for Square Animation Company.",
-        year: "2018"
-    },
-   
+        title: "Expanded Global Footprint",
+        desc: "Established international presence across Canada, USA, and UAE markets, serving clients worldwide with our cutting-edge digital marketing solutions.",
+        year: "2025",
+        category: "Global Expansion",
+        impact: "3+ Countries",
+        highlight: false
+    }
 ];
 
 export default function AwardsGrid() {
@@ -55,11 +45,10 @@ export default function AwardsGrid() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-3 mb-4"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 font-bold text-sm uppercase tracking-widest rounded-full mb-4"
                     >
-                        <div className="h-px w-8 bg-gray-800" />
-                        <span className="text-gray-600 uppercase tracking-[0.2em] text-sm font-bold">Our Journey</span>
-                        <div className="h-px w-8 bg-gray-800" />
+                        <Sparkles size={14} />
+                        Our Journey
                     </motion.div>
                     
                     <motion.h2
@@ -67,86 +56,137 @@ export default function AwardsGrid() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+                        className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
                     >
-                        Key Milestones & Achievements
+                        Built in{' '}
+                        <span className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+                            2025
+                        </span>
                     </motion.h2>
                     
+                    <div className="w-20 h-1 bg-gradient-to-r from-gray-400 to-gray-300 mx-auto mb-6 rounded-full"></div>
+
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="text-gray-500 max-w-2xl mx-auto"
+                        className="text-xl text-gray-600 max-w-3xl mx-auto"
                     >
-                        A timeline of our journey, impact, and recognition across industries
+                        Though we're new, our impact is already being felt across industries
                     </motion.p>
                 </div>
 
-                {/* Stats Summary */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
-                >
-                    {[
-                        { value: '7+', label: 'Major Milestones' },
-                        { value: '8+', label: 'Brands Launched' },
-                        { value: '10+', label: 'Years Experience' },
-                        { value: '5+', label: 'Industries' }
-                    ].map((stat, i) => (
-                        <div key={i} className="text-center p-4 bg-gray-50 rounded-xl">
-                            <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-                            <div className="text-xs text-gray-500 uppercase tracking-wide">{stat.label}</div>
-                        </div>
-                    ))}
-                </motion.div>
+               
 
-                {/* Achievements Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Achievements Grid - 3 Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                     {achievements.map((item, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: index * 0.05 }}
-                            className="bg-gray-50 rounded-2xl p-6 hover:bg-white hover:shadow-lg transition-all duration-300 group border border-gray-100 hover:border-gray-200"
+                            transition={{ duration: 0.4, delay: index * 0.1 }}
+                            className={`group relative bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-300 border hover:-translate-y-1 ${
+                                item.highlight 
+                                    ? 'border-gray-300 shadow-lg ring-1 ring-gray-200' 
+                                    : 'border-gray-100 hover:border-gray-200'
+                            }`}
                         >
-                            <div className="flex justify-between items-start mb-5">
-                                <div className="w-12 h-12 rounded-xl bg-gray-900 group-hover:bg-gray-800 transition-colors flex items-center justify-center">
-                                    <item.icon size={22} className="text-white" />
+                            {/* Top Border Gradient on Hover */}
+                            <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-700 to-gray-500 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                                item.highlight ? 'opacity-100' : ''
+                            }`} />
+
+                            {/* Highlight Badge for Founding Year */}
+                            {item.highlight && (
+                                <div className="absolute -top-3 left-6 px-3 py-1 bg-gray-900 text-white text-xs font-bold rounded-full">
+                                    Featured
                                 </div>
-                                <div className="flex items-center gap-1 bg-white px-3 py-1 rounded-full shadow-sm">
-                                    <Calendar size={12} className="text-gray-500" />
-                                    <span className="text-xs font-medium text-gray-600">{item.year}</span>
+                            )}
+
+                            <div className="flex justify-between items-start mb-5">
+                                <div className={`w-14 h-14 rounded-xl bg-gray-900 group-hover:bg-gray-800 transition-all duration-300 flex items-center justify-center shadow-md group-hover:shadow-lg ${
+                                    item.highlight ? 'bg-gray-800' : ''
+                                }`}>
+                                    <item.icon size={24} className="text-white" />
+                                </div>
+                                <div className="flex flex-col items-end gap-2">
+                                    <div className="flex items-center gap-1 bg-gray-50 px-3 py-1.5 rounded-full">
+                                        <Calendar size={12} className="text-gray-500" />
+                                        <span className="text-sm font-medium text-gray-600">{item.year}</span>
+                                    </div>
+                                    <div className="inline-block px-2 py-1 bg-gray-100 rounded-full">
+                                        <span className="text-xs text-gray-500">{item.category}</span>
+                                    </div>
                                 </div>
                             </div>
 
-                            <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-gray-800 transition">
+                            <h3 className={`text-xl font-bold mb-3 group-hover:text-gray-800 transition ${
+                                item.highlight ? 'text-gray-900' : 'text-gray-900'
+                            }`}>
                                 {item.title}
                             </h3>
 
-                            <p className="text-gray-500 leading-relaxed text-sm">
+                            <p className="text-gray-500 leading-relaxed text-sm mb-5">
                                 {item.desc}
                             </p>
+
+                            {/* Impact Badge */}
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-lg">
+                                <Zap size={12} className="text-gray-600" />
+                                <span className="text-xs font-medium text-gray-700">{item.impact}</span>
+                            </div>
                         </motion.div>
                     ))}
                 </div>
+
+                {/* Company Timeline */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 }}
+                    className="mt-20 bg-gradient-to-r from-gray-50 to-gray-100 rounded-3xl p-10 text-center"
+                >
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                        The Journey Has Just Begun
+                    </h3>
+                    <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+                        Founded in 2025, Renvio is already making waves in the marketing industry. 
+                        With AI-powered solutions and a client-first approach, we're just getting started.
+                    </p>
+                    <div className="flex items-center justify-center gap-4">
+                        <div className="flex items-center gap-2">
+                            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                            <span className="text-sm text-gray-500">Actively Growing</span>
+                        </div>
+                        <div className="w-px h-4 bg-gray-300"></div>
+                        <div className="flex items-center gap-2">
+                            <Rocket size={14} className="text-gray-600" />
+                            <span className="text-sm text-gray-500">Expanding Globally</span>
+                        </div>
+                        <div className="w-px h-4 bg-gray-300"></div>
+                        <div className="flex items-center gap-2">
+                            <Target size={14} className="text-gray-600" />
+                            <span className="text-sm text-gray-500">AI-Focused</span>
+                        </div>
+                    </div>
+                </motion.div>
 
                 {/* Bottom Note */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
+                    transition={{ delay: 0.6 }}
                     className="mt-12 text-center"
                 >
-                    <p className="text-xs text-gray-400">
-                        Each milestone represents our commitment to excellence and innovation
-                    </p>
+                    <div className="inline-flex items-center gap-2 text-gray-400">
+                        <Sparkles size={14} />
+                        <p className="text-sm">Every milestone represents our commitment to excellence and innovation</p>
+                    </div>
                 </motion.div>
             </div>
         </section>

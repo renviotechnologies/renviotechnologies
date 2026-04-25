@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { TrendingUp, Users, Heart, MessageCircle, Share2, DollarSign, Target, Zap, Instagram, Youtube, Twitter } from 'lucide-react';
+import { TrendingUp, Users, Heart, MessageCircle, Share2, DollarSign, Target, Zap, Instagram, Youtube, Twitter, Sparkles, Award, Star, ChevronRight } from 'lucide-react';
 
 const campaigns = [
     {
@@ -18,7 +18,7 @@ const campaigns = [
         reach: '2.1M',
         conversions: '450+',
         roi: '12x',
-        description: 'Authentic food review that drove massive foot traffic',
+        description: 'Authentic food review that drove massive foot traffic to Canada\'s favorite restaurant',
         metrics: {
             likes: '45K',
             comments: '2.3K',
@@ -37,7 +37,7 @@ const campaigns = [
         reach: '1.8M',
         conversions: '320+',
         roi: '15x',
-        description: 'Jewelry styling series that went viral',
+        description: 'Jewelry styling series that went viral across social platforms',
         metrics: {
             likes: '38K',
             comments: '1.9K',
@@ -56,7 +56,7 @@ const campaigns = [
         reach: '3.5M',
         conversions: '890+',
         roi: '18x',
-        description: 'Weekly horoscope series with massive engagement',
+        description: 'Weekly horoscope series with massive engagement and community growth',
         metrics: {
             likes: '67K',
             comments: '4.2K',
@@ -75,7 +75,7 @@ const campaigns = [
         reach: '2.8M',
         conversions: '670+',
         roi: '14x',
-        description: 'Authentic biryani launch that went viral',
+        description: 'Authentic biryani launch campaign that drove record-breaking sales',
         metrics: {
             likes: '52K',
             comments: '3.1K',
@@ -86,10 +86,10 @@ const campaigns = [
 ];
 
 const stats = [
-    { icon: Users, number: '50+', label: 'Influencer Partnerships', color: 'text-pink-500' },
-    { icon: TrendingUp, number: '25M+', label: 'Total Reach', color: 'text-purple-500' },
-    { icon: DollarSign, number: '15x', label: 'Average ROI', color: 'text-green-500' },
-    { icon: Zap, number: '95%', label: 'Campaign Success Rate', color: 'text-yellow-500' }
+    { icon: Users, number: '50+', label: 'Influencer Partnerships', color: 'text-gray-700', bg: 'bg-gray-100' },
+    { icon: TrendingUp, number: '25M+', label: 'Total Reach', color: 'text-gray-700', bg: 'bg-gray-100' },
+    { icon: DollarSign, number: '15x', label: 'Average ROI', color: 'text-green-600', bg: 'bg-green-50' },
+    { icon: Zap, number: '95%', label: 'Campaign Success Rate', color: 'text-gray-700', bg: 'bg-gray-100' }
 ];
 
 const platformIcons = {
@@ -102,14 +102,8 @@ export default function InfluencerMarketing() {
     const [selectedCampaign, setSelectedCampaign] = useState(campaigns[0]);
 
     return (
-        <section className="py-24 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 relative overflow-hidden">
-            {/* Animated Background */}
-            <div className="absolute inset-0 opacity-30">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-pink-300 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-            </div>
-
-            <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        <section className="py-24 bg-white">
+            <div className="container mx-auto px-6 max-w-7xl">
                 {/* Section Header */}
                 <motion.div
                     className="text-center mb-16"
@@ -117,33 +111,26 @@ export default function InfluencerMarketing() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <motion.div
-                        className="inline-block mb-6"
-                        initial={{ scale: 0.8 }}
-                        whileInView={{ scale: 1 }}
-                        viewport={{ once: true }}
-                    >
-                        <span className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white font-bold text-sm uppercase tracking-widest rounded-full shadow-lg">
-                            <Zap size={16} />
-                            Influencer Marketing
-                        </span>
-                    </motion.div>
-                    <h2 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 leading-tight">
-                        <span className="text-kestone-black">Campaigns That</span><br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500">
-                            Break The Internet
+                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 font-bold text-sm uppercase tracking-widest rounded-full mb-4">
+                        <Sparkles size={14} />
+                        Influencer Marketing
+                    </span>
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                        Campaigns That{' '}
+                        <span className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+                            Drive Results
                         </span>
                     </h2>
-                    <p className="text-xl text-gray-700 max-w-3xl mx-auto font-body leading-relaxed">
-                        We don't just find influencers—we create <span className="font-bold text-purple-600">viral moments</span>,
-                        build <span className="font-bold text-pink-600">authentic partnerships</span>, and deliver
-                        <span className="font-bold text-blue-600"> measurable results</span> that transform brands.
+                    <div className="w-20 h-1 bg-gradient-to-r from-gray-400 to-gray-300 mx-auto mb-6 rounded-full"></div>
+                    <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                        We create authentic partnerships that go beyond likes—delivering measurable ROI,
+                        brand loyalty, and viral growth for our clients.
                     </p>
                 </motion.div>
 
                 {/* Stats Grid */}
                 <motion.div
-                    className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+                    className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -151,20 +138,20 @@ export default function InfluencerMarketing() {
                     {stats.map((stat, idx) => (
                         <motion.div
                             key={idx}
-                            className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300"
+                            className={`${stat.bg} rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100`}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            whileHover={{ scale: 1.05 }}
+                            whileHover={{ y: -5 }}
                         >
-                            <div className={`inline-flex items-center justify-center w-14 h-14 ${stat.color} bg-opacity-10 rounded-full mb-3`}>
-                                <stat.icon className={stat.color} size={28} />
+                            <div className={`inline-flex items-center justify-center w-12 h-12 ${stat.bg} rounded-full mb-3`}>
+                                <stat.icon className={stat.color} size={24} />
                             </div>
-                            <div className="text-3xl md:text-4xl font-heading font-bold text-kestone-black mb-2">
+                            <div className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
                                 {stat.number}
                             </div>
-                            <div className="text-sm text-gray-600 font-body">
+                            <div className="text-sm text-gray-500">
                                 {stat.label}
                             </div>
                         </motion.div>
@@ -172,144 +159,156 @@ export default function InfluencerMarketing() {
                 </motion.div>
 
                 {/* Campaign Showcase */}
-                <div className="grid lg:grid-cols-2 gap-12 mb-16">
+                <div className="grid lg:grid-cols-2 gap-10 mb-16">
                     {/* Campaign Selector */}
-                    <div className="space-y-4">
-                        <h3 className="text-2xl font-heading font-bold text-kestone-black mb-6">
-                            Featured Campaigns
-                        </h3>
-                        {campaigns.map((campaign, idx) => (
-                            <motion.div
-                                key={campaign.id}
-                                className={`p-6 rounded-xl cursor-pointer transition-all duration-300 ${selectedCampaign.id === campaign.id
-                                    ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-xl scale-105'
-                                    : 'bg-white/80 backdrop-blur-sm hover:bg-white shadow-md hover:shadow-lg'
+                    <div>
+                        <div className="flex items-center gap-2 mb-6">
+                            <h3 className="text-xl font-bold text-gray-900">Featured Campaigns</h3>
+                            <div className="h-px flex-1 bg-gray-200"></div>
+                        </div>
+                        <div className="space-y-4">
+                            {campaigns.map((campaign, idx) => (
+                                <motion.div
+                                    key={campaign.id}
+                                    className={`p-5 rounded-xl cursor-pointer transition-all duration-300 border ${
+                                        selectedCampaign.id === campaign.id
+                                            ? 'bg-gray-900 border-gray-900 shadow-lg'
+                                            : 'bg-white border-gray-200 hover:border-gray-400 hover:shadow-md'
                                     }`}
-                                onClick={() => setSelectedCampaign(campaign)}
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: idx * 0.1 }}
-                                whileHover={{ x: 10 }}
-                            >
-                                <div className="flex items-center gap-4">
-                                    <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
-                                        <Image
-                                            src={campaign.image}
-                                            alt={campaign.brand}
-                                            fill
-                                            className="object-cover"
-                                        />
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className="flex items-center gap-2 mb-1">
-                                            <h4 className={`font-heading font-bold ${selectedCampaign.id === campaign.id ? 'text-white' : 'text-kestone-black'}`}>
-                                                {campaign.brand}
-                                            </h4>
-                                            {React.createElement(platformIcons[campaign.platform as keyof typeof platformIcons], {
-                                                size: 16,
-                                                className: selectedCampaign.id === campaign.id ? 'text-white' : 'text-pink-500'
-                                            })}
+                                    onClick={() => setSelectedCampaign(campaign)}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: idx * 0.1 }}
+                                >
+                                    <div className="flex items-center gap-4">
+                                        <div className="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 bg-gray-100">
+                                            <Image
+                                                src={campaign.image}
+                                                alt={campaign.brand}
+                                                fill
+                                                className="object-cover"
+                                            />
                                         </div>
-                                        <p className={`text-sm font-body ${selectedCampaign.id === campaign.id ? 'text-white/90' : 'text-gray-600'}`}>
-                                            {campaign.influencer}
-                                        </p>
-                                    </div>
-                                    <div className="text-right">
-                                        <div className={`text-2xl font-heading font-bold ${selectedCampaign.id === campaign.id ? 'text-white' : 'text-purple-600'}`}>
-                                            {campaign.roi}
+                                        <div className="flex-1">
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <h4 className={`font-bold ${selectedCampaign.id === campaign.id ? 'text-white' : 'text-gray-900'}`}>
+                                                    {campaign.brand}
+                                                </h4>
+                                                {React.createElement(platformIcons[campaign.platform as keyof typeof platformIcons], {
+                                                    size: 14,
+                                                    className: selectedCampaign.id === campaign.id ? 'text-gray-400' : 'text-gray-500'
+                                                })}
+                                            </div>
+                                            <p className={`text-sm ${selectedCampaign.id === campaign.id ? 'text-gray-400' : 'text-gray-500'}`}>
+                                                {campaign.influencer}
+                                            </p>
                                         </div>
-                                        <div className={`text-xs ${selectedCampaign.id === campaign.id ? 'text-white/80' : 'text-gray-500'}`}>
-                                            ROI
+                                        <div className="text-right">
+                                            <div className={`text-xl font-bold ${selectedCampaign.id === campaign.id ? 'text-green-400' : 'text-green-600'}`}>
+                                                {campaign.roi}
+                                            </div>
+                                            <div className={`text-xs ${selectedCampaign.id === campaign.id ? 'text-gray-400' : 'text-gray-400'}`}>
+                                                ROI
+                                            </div>
                                         </div>
+                                        {selectedCampaign.id === campaign.id && (
+                                            <ChevronRight size={20} className="text-gray-400" />
+                                        )}
                                     </div>
-                                </div>
-                            </motion.div>
-                        ))}
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
 
                     {/* Campaign Details */}
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={selectedCampaign.id}
-                            className="bg-white rounded-3xl overflow-hidden shadow-2xl"
-                            initial={{ opacity: 0, scale: 0.9 }}
+                            className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200"
+                            initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.3 }}
                         >
                             {/* Image */}
-                            <div className="relative aspect-square">
-                                <Image
-                                    src={selectedCampaign.image}
-                                    alt={selectedCampaign.brand}
-                                    fill
-                                    className="object-cover"
-                                />
-                                <div className="absolute top-6 left-6 px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold text-sm rounded-full shadow-lg">
+                            <div className="relative h-48 bg-gradient-to-r from-gray-100 to-gray-200">
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <div className="relative w-24 h-24 rounded-full overflow-hidden bg-white shadow-lg">
+                                        <Image
+                                            src={selectedCampaign.image}
+                                            alt={selectedCampaign.brand}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="absolute top-4 right-4 px-3 py-1 bg-white/95 backdrop-blur-sm text-gray-900 font-bold text-xs rounded-full shadow-sm">
                                     {selectedCampaign.platform}
                                 </div>
                             </div>
 
                             {/* Details */}
-                            <div className="p-8">
-                                <h3 className="text-3xl font-heading font-bold text-kestone-black mb-3">
-                                    {selectedCampaign.brand}
-                                </h3>
-                                <p className="text-gray-600 font-body text-lg mb-6">
-                                    {selectedCampaign.description}
-                                </p>
+                            <div className="p-6">
+                                <div className="text-center mb-6">
+                                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                                        {selectedCampaign.brand}
+                                    </h3>
+                                    <p className="text-gray-600 text-sm">
+                                        {selectedCampaign.description}
+                                    </p>
+                                </div>
 
                                 {/* Metrics Grid */}
-                                <div className="grid grid-cols-2 gap-4 mb-6">
-                                    <div className="p-4 bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl">
-                                        <div className="text-2xl font-heading font-bold text-pink-600 mb-1">
+                                <div className="grid grid-cols-2 gap-3 mb-6">
+                                    <div className="p-3 bg-gray-50 rounded-xl text-center">
+                                        <div className="text-lg font-bold text-gray-900 mb-0.5">
                                             {selectedCampaign.reach}
                                         </div>
-                                        <div className="text-sm text-gray-600 font-body">Total Reach</div>
+                                        <div className="text-xs text-gray-500">Total Reach</div>
                                     </div>
-                                    <div className="p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl">
-                                        <div className="text-2xl font-heading font-bold text-purple-600 mb-1">
+                                    <div className="p-3 bg-gray-50 rounded-xl text-center">
+                                        <div className="text-lg font-bold text-gray-900 mb-0.5">
                                             {selectedCampaign.engagement}
                                         </div>
-                                        <div className="text-sm text-gray-600 font-body">Engagement Rate</div>
+                                        <div className="text-xs text-gray-500">Engagement Rate</div>
                                     </div>
-                                    <div className="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
-                                        <div className="text-2xl font-heading font-bold text-blue-600 mb-1">
+                                    <div className="p-3 bg-gray-50 rounded-xl text-center">
+                                        <div className="text-lg font-bold text-gray-900 mb-0.5">
                                             {selectedCampaign.conversions}
                                         </div>
-                                        <div className="text-sm text-gray-600 font-body">Conversions</div>
+                                        <div className="text-xs text-gray-500">Conversions</div>
                                     </div>
-                                    <div className="p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-xl">
-                                        <div className="text-2xl font-heading font-bold text-green-600 mb-1">
+                                    <div className="p-3 bg-green-50 rounded-xl text-center">
+                                        <div className="text-lg font-bold text-green-600 mb-0.5">
                                             {selectedCampaign.roi}
                                         </div>
-                                        <div className="text-sm text-gray-600 font-body">Return on Investment</div>
+                                        <div className="text-xs text-gray-500">Return on Investment</div>
                                     </div>
                                 </div>
 
                                 {/* Social Metrics */}
-                                <div className="flex items-center justify-around p-6 bg-gray-50 rounded-xl">
+                                <div className="flex items-center justify-around p-4 bg-gray-50 rounded-xl">
                                     <div className="text-center">
-                                        <Heart className="text-pink-500 mx-auto mb-2" size={24} />
-                                        <div className="font-heading font-bold text-kestone-black">
+                                        <Heart size={18} className="text-gray-500 mx-auto mb-1" />
+                                        <div className="font-semibold text-gray-900 text-sm">
                                             {selectedCampaign.metrics.likes}
                                         </div>
-                                        <div className="text-xs text-gray-500">Likes</div>
+                                        <div className="text-xs text-gray-400">Likes</div>
                                     </div>
                                     <div className="text-center">
-                                        <MessageCircle className="text-blue-500 mx-auto mb-2" size={24} />
-                                        <div className="font-heading font-bold text-kestone-black">
+                                        <MessageCircle size={18} className="text-gray-500 mx-auto mb-1" />
+                                        <div className="font-semibold text-gray-900 text-sm">
                                             {selectedCampaign.metrics.comments}
                                         </div>
-                                        <div className="text-xs text-gray-500">Comments</div>
+                                        <div className="text-xs text-gray-400">Comments</div>
                                     </div>
                                     <div className="text-center">
-                                        <Share2 className="text-purple-500 mx-auto mb-2" size={24} />
-                                        <div className="font-heading font-bold text-kestone-black">
+                                        <Share2 size={18} className="text-gray-500 mx-auto mb-1" />
+                                        <div className="font-semibold text-gray-900 text-sm">
                                             {selectedCampaign.metrics.shares}
                                         </div>
-                                        <div className="text-xs text-gray-500">Shares</div>
+                                        <div className="text-xs text-gray-400">Shares</div>
                                     </div>
                                 </div>
                             </div>
@@ -317,29 +316,33 @@ export default function InfluencerMarketing() {
                     </AnimatePresence>
                 </div>
 
-                {/* CTA Section */}
+                {/* Testimonial */}
                 <motion.div
-                    className="text-center bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 rounded-3xl p-12 shadow-2xl"
-                    initial={{ opacity: 0, y: 30 }}
+                    className="mb-16"
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <h3 className="text-3xl md:text-5xl font-heading font-bold text-white mb-6">
-                        Ready to Go Viral?
-                    </h3>
-                    <p className="text-xl text-white/90 font-body mb-8 max-w-2xl mx-auto">
-                        Let's create influencer campaigns that don't just get views—they get results.
-                    </p>
-                    <Link href="/contact">
-                        <motion.button
-                            className="px-10 py-5 bg-white text-purple-600 font-heading font-bold text-lg rounded-full hover:bg-gray-100 transition-all duration-300 shadow-xl"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            Start Your Campaign
-                        </motion.button>
-                    </Link>
+                    <div className="bg-gray-50 rounded-2xl p-8 text-center border border-gray-100">
+                        <div className="text-4xl text-gray-300 font-serif mb-3">"</div>
+                        <p className="text-lg text-gray-700 max-w-2xl mx-auto mb-4 italic">
+                            The influencer campaign Renvio ran for us generated more sales in 2 weeks 
+                            than we had in the previous 6 months. Their approach to authentic partnerships is unmatched.
+                        </p>
+                        <div className="flex items-center justify-center gap-2">
+                            <Star size={16} className="text-yellow-500 fill-yellow-500" />
+                            <Star size={16} className="text-yellow-500 fill-yellow-500" />
+                            <Star size={16} className="text-yellow-500 fill-yellow-500" />
+                            <Star size={16} className="text-yellow-500 fill-yellow-500" />
+                            <Star size={16} className="text-yellow-500 fill-yellow-500" />
+                        </div>
+                        <p className="text-sm text-gray-500 mt-3">
+                            — Sarah Johnson, CMO at Delhi059
+                        </p>
+                    </div>
                 </motion.div>
+
+               
             </div>
         </section>
     );
