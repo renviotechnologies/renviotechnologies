@@ -107,7 +107,7 @@ export default function CareersContent() {
                             <div className="mb-8">
                                 <span className="text-gray-500 font-bold tracking-widest uppercase text-sm mb-2 block">Our Culture</span>
                                 <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                                    Why Join Renvio?
+                                    Why Join Aerovince?
                                 </h3>
                                 <p className="text-gray-600 leading-relaxed">
                                     We are a growth engine powered by technology and creativity. We look for people 
@@ -138,7 +138,7 @@ export default function CareersContent() {
                             {/* Quote */}
                             <div className="mt-8 p-6 bg-white rounded-2xl border border-gray-100">
                                 <p className="text-gray-600 italic text-sm leading-relaxed">
-                                    "Renvio gave me the freedom to work remotely while working on cutting-edge AI marketing projects. 
+                                    "Aerovince gave me the freedom to work remotely while working on cutting-edge AI marketing projects. 
                                     The team culture is incredible and the growth opportunities are endless."
                                 </p>
                                 <div className="flex items-center gap-3 mt-4">

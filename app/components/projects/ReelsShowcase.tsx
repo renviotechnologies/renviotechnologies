@@ -6,102 +6,103 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Eye, Heart, Instagram, Clock, TrendingUp, Sparkles, X } from 'lucide-react';
 
 const reels = [
-    {
-        id: 1,
-        title: 'Delhi059 Behind the Scenes',
-        brand: 'Delhi059',
-        thumbnail: 'https://www.instagram.com/p/DQzEyrTDAXW/media/?size=l',
-        instagramUrl: 'https://www.instagram.com/p/DQzEyrTDAXW/',
-        views: '125K',
-        likes: '8.2K',
-        duration: '0:45',
-        description: 'A day in the life at Canada\'s favorite restaurant',
-        engagement: '6.5%'
-    },
-    {
-        id: 2,
-        title: 'Local Ride Driver Stories',
-        brand: 'Local Ride',
-        thumbnail: 'https://www.instagram.com/p/DSG7FV_jVdI/media/?size=l',
-        instagramUrl: 'https://www.instagram.com/p/DSG7FV_jVdI/',
-        views: '89K',
-        likes: '5.4K',
-        duration: '0:32',
-        description: 'Real drivers, real stories, zero commission',
-        engagement: '6.1%'
-    },
-    {
-        id: 3,
-        title: 'Dee Cee Jewelry Showcase',
-        brand: 'Dee Cee Accessories',
-        thumbnail: 'https://www.instagram.com/p/DIYuVCWz2aO/media/?size=l',
-        instagramUrl: 'https://www.instagram.com/p/DIYuVCWz2aO/',
-        views: '92K',
-        likes: '6.8K',
-        duration: '0:38',
-        description: 'Elegance meets affordability',
-        engagement: '7.4%'
-    },
-    {
-        id: 4,
-        title: 'Biryani Bar Cooking Magic',
-        brand: 'Biryani Bar',
-        thumbnail: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&q=80',
-        instagramUrl: undefined,
-        views: '178K',
-        likes: '14.2K',
-        duration: '0:52',
-        description: 'The secret to perfect biryani',
-        engagement: '8.0%'
-    },
-    {
-        id: 5,
-        title: 'CabTale Safety First',
-        brand: 'CabTale',
-        thumbnail: 'https://www.instagram.com/p/DNH5BkfBSeQ/media/?size=l',
-        instagramUrl: 'https://www.instagram.com/p/DNH5BkfBSeQ/',
-        views: '45K',
-        likes: '3.2K',
-        duration: '0:30',
-        description: 'Your safety is our priority',
-        engagement: '7.1%'
-    },
-    {
-        id: 6,
-        title: 'Astro Nexus Zodiac Series',
-        brand: 'Astro Nexus',
-        thumbnail: 'https://www.instagram.com/p/DTgxqv6iNh5/media/?size=l',
-        instagramUrl: 'https://www.instagram.com/p/DTgxqv6iNh5/',
-        views: '67K',
-        likes: '4.9K',
-        duration: '0:28',
-        description: 'Your daily horoscope reimagined',
-        engagement: '7.3%'
-    },
-    {
-        id: 7,
-        title: 'Read Abroad Study Tips',
-        brand: 'Read Abroad',
-        thumbnail: 'https://www.instagram.com/p/DS1YULWEegw/media/?size=l',
-        instagramUrl: 'https://www.instagram.com/p/DS1YULWEegw/',
-        views: '34K',
-        likes: '2.1K',
-        duration: '0:35',
-        description: 'Study abroad success stories',
-        engagement: '6.2%'
-    },
-    {
-        id: 8,
-        title: 'TripTale Travel Diaries',
-        brand: 'TripTale',
-        thumbnail: 'https://www.instagram.com/p/DOfLasDCRCO/media/?size=l',
-        instagramUrl: 'https://www.instagram.com/p/DOfLasDCRCO/',
-        views: '156K',
-        likes: '12.3K',
-        duration: '0:42',
-        description: 'Wanderlust inspiration',
-        engagement: '7.9%'
-    }
+  {
+    id: 1,
+    title: "Delhi059 Behind the Scenes",
+    brand: "Delhi059",
+    thumbnail: "https://www.instagram.com/p/DQzEyrTDAXW/media/?size=l",
+    instagramUrl: "https://www.instagram.com/p/DQzEyrTDAXW/",
+    views: "125K",
+    likes: "8.2K",
+    duration: "0:45",
+    description: "A day in the life at Canada's favorite restaurant",
+    engagement: "6.5%",
+  },
+  {
+    id: 2,
+    title: "Local Ride Driver Stories",
+    brand: "Local Ride",
+    thumbnail: "https://www.instagram.com/reel/DXI80lAE16f/media/?size=l",
+    instagramUrl: "https://www.instagram.com/reel/DXI80lAE16f",
+    views: "89K",
+    likes: "5.4K",
+    duration: "0:32",
+    description: "Real drivers, real stories, zero commission",
+    engagement: "6.1%",
+  },
+  {
+    id: 3,
+    title: "Dee Cee Jewelry Showcase",
+    brand: "Dee Cee Accessories",
+    thumbnail: "https://www.instagram.com/p/DIYuVCWz2aO/media/?size=l",
+    instagramUrl: "https://www.instagram.com/p/DIYuVCWz2aO/",
+    views: "92K",
+    likes: "6.8K",
+    duration: "0:38",
+    description: "Elegance meets affordability",
+    engagement: "7.4%",
+  },
+  {
+    id: 4,
+    title: "Biryani Bar Cooking Magic",
+    brand: "Biryani Bar",
+    thumbnail:
+      "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&q=80",
+    instagramUrl: undefined,
+    views: "178K",
+    likes: "14.2K",
+    duration: "0:52",
+    description: "The secret to perfect biryani",
+    engagement: "8.0%",
+  },
+  {
+    id: 5,
+    title: "CabTale Safety First",
+    brand: "CabTale",
+    thumbnail: "https://www.instagram.com/p/DNH5BkfBSeQ/media/?size=l",
+    instagramUrl: "https://www.instagram.com/p/DNH5BkfBSeQ/",
+    views: "45K",
+    likes: "3.2K",
+    duration: "0:30",
+    description: "Your safety is our priority",
+    engagement: "7.1%",
+  },
+  {
+    id: 6,
+    title: "Astro Nexus Zodiac Series",
+    brand: "Astro Nexus",
+    thumbnail: "https://www.instagram.com/p/DTgxqv6iNh5/media/?size=l",
+    instagramUrl: "https://www.instagram.com/p/DTgxqv6iNh5/",
+    views: "67K",
+    likes: "4.9K",
+    duration: "0:28",
+    description: "Your daily horoscope reimagined",
+    engagement: "7.3%",
+  },
+  {
+    id: 7,
+    title: "Read Abroad Study Tips",
+    brand: "Read Abroad",
+    thumbnail: "https://www.instagram.com/p/DS1YULWEegw/media/?size=l",
+    instagramUrl: "https://www.instagram.com/p/DS1YULWEegw/",
+    views: "34K",
+    likes: "2.1K",
+    duration: "0:35",
+    description: "Study abroad success stories",
+    engagement: "6.2%",
+  },
+  {
+    id: 8,
+    title: "TripTale Travel Diaries",
+    brand: "TripTale",
+    thumbnail: "https://www.instagram.com/p/DOfLasDCRCO/media/?size=l",
+    instagramUrl: "https://www.instagram.com/p/DOfLasDCRCO/",
+    views: "156K",
+    likes: "12.3K",
+    duration: "0:42",
+    description: "Wanderlust inspiration",
+    engagement: "7.9%",
+  },
 ];
 
 const featuredReel = reels[0];
@@ -140,6 +141,7 @@ export default function ReelsShowcase() {
                         Short-form content that captures attention, tells stories, and drives massive engagement
                         across social platforms.
                     </p>
+                    
                 </motion.div>
 
                 {/* Stats Row */}

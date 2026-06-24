@@ -78,7 +78,7 @@ export default function Manifesto() {
                     transition={{ duration: 1, ease: "easeOut" }}
                 >
                     <span className="bg-gradient-to-r from-white via-green-400 to-white bg-clip-text text-transparent">
-                        Renvio
+                        Aerovince
                     </span>
                     <br />
                     <span className="text-green-500">
@@ -105,7 +105,7 @@ export default function Manifesto() {
                     transition={{ duration: 1, delay: 0.8 }}
                 >
                     <p className="leading-relaxed">
-                        Renvio is an AI-powered pioneering advertising and marketing company dedicated
+                        Aerovince is an AI-powered pioneering advertising and marketing company dedicated
                         to helping businesses of all sizes achieve their maximum potential through innovative
                         and effective marketing strategies. We are committed to driving brand visibility,
                         customer engagement, and lead generation for our clients.

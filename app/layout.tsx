@@ -18,10 +18,11 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Renvio | AI Powered Marketing Agency",
-  description: "An advertising company helping brands succeed in both traditional and digital marketing.",
+  title: "Aerovince | Powered by AI",
+  description:
+    "An advertising company helping brands succeed in both traditional and digital marketing.",
   icons: {
-    icon: "/images/renvio_logo.png",
+    icon: "/images/aerovince_logo.png",
   },
   verification: {
     google: "APNS6nHozhiQP3ShefFpxbHPSuvD0Nt-YMr-k2Wu9VE",

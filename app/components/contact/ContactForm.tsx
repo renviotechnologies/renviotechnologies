@@ -145,13 +145,13 @@ export default function ContactForm() {
                   <span>+91-9399273310</span>
                 </a>
                 <a
-                  href="mailto:renviotechnologies@gmail.com"
+                  href="mailto:Aerovincetechnologies@gmail.com"
                   className="flex items-center gap-3 text-gray-600 hover:text-black transition-colors group"
                 >
                   <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-black transition-colors">
                     <Mail className="w-4 h-4 text-black group-hover:text-white" />
                   </div>
-                  <span>renviotechnologies@gmail.com</span>
+                  <span>Aerovincetechnologies@gmail.com</span>
                 </a>
                 <div className="flex items-start gap-3 text-gray-600">
                   <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center shrink-0">

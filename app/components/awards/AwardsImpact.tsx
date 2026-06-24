@@ -20,7 +20,7 @@ export default function AwardsImpact() {
                     </p>
                     <div className="p-8 bg-neutral-50 rounded-2xl border border-gray-100">
                         <blockquote className="text-2xl font-heading italic text-gray-700 leading-relaxed">
-                            &quot;The creative excellence Renvio brings to the table is unmatched. They don&apos;t just win awards; they win market share.&quot;
+                            &quot;The creative excellence Aerovince brings to the table is unmatched. They don&apos;t just win awards; they win market share.&quot;
                         </blockquote>
                         <div className="mt-8 font-bold text-kestone-black uppercase tracking-widest text-sm">
                             — Marketing Director, Volvo Cars India

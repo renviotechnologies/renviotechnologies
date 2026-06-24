@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const BRAND = {
-  name: "RenvioTechnologies",
+  name: "AerovinceTechnologies",
   bot: "John",
 };
 
@@ -48,7 +48,7 @@ Guidelines:
 - Keep responses under 200 words. Be sharp, not exhaustive.`;
 
 const FALLBACK_REPLY =
-  "I'm John, your strategic advisor at RenvioTechnologies. I'm momentarily offline, but here's a thought: every great digital presence starts with clarity — clarity of brand, audience, and offer. Reach us on WhatsApp and let's talk strategy!";
+  "I'm John, your strategic advisor at AerovinceTechnologies. I'm momentarily offline, but here's a thought: every great digital presence starts with clarity — clarity of brand, audience, and offer. Reach us on WhatsApp and let's talk strategy!";
 
 export async function POST(req: NextRequest) {
   try {

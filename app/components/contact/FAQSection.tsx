@@ -60,7 +60,7 @@ export default function FAQSection() {
 
  const handleEmailClick = () => {
     window.open(
-      "https://mail.google.com/mail/?view=cm&to=renviotechnologies@gmail.com",
+      "https://mail.google.com/mail/?view=cm&to=Aerovincetechnologies@gmail.com",
       "_blank",
     );
   };

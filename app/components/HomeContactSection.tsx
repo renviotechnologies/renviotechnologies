@@ -49,9 +49,9 @@ export default function HomeContactSection() {
     };
 
     const contactInfo = [
-        { icon: Mail, text: 'hello@renvio.com', href: 'mailto:hello@renvio.com' },
-        { icon: Phone, text: '+91 8527 664 228', href: 'tel:+918527664228' },
-        { icon: MapPin, text: 'Dwarka, New Delhi', href: '#' },
+        { icon: Mail, text: 'hello@Aerovince.com', href: 'mailto:hello@Aerovince.com' },
+        { icon: Phone, text: '+91 7489951514', href: 'tel:+917489951514' },
+        { icon: MapPin, text: 'Vijay Nagar, Indore', href: '#' },
         { icon: Clock, text: 'Mon-Fri: 9AM - 7PM', href: '#' },
     ];
 

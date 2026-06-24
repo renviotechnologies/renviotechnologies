@@ -326,7 +326,7 @@ export default function InfluencerMarketing() {
                     <div className="bg-gray-50 rounded-2xl p-8 text-center border border-gray-100">
                         <div className="text-4xl text-gray-300 font-serif mb-3">"</div>
                         <p className="text-lg text-gray-700 max-w-2xl mx-auto mb-4 italic">
-                            The influencer campaign Renvio ran for us generated more sales in 2 weeks 
+                            The influencer campaign Aerovince ran for us generated more sales in 2 weeks 
                             than we had in the previous 6 months. Their approach to authentic partnerships is unmatched.
                         </p>
                         <div className="flex items-center justify-center gap-2">

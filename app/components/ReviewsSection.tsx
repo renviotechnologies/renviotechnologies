@@ -59,7 +59,7 @@ export function TestimonialsSection() {
           className="mt-8 md:mt-12 z-10 text-center"
         >
           <a
-            href="https://www.google.com/maps/search/?api=1&query=Renvio+Dwarka+Sector+14+New+Delhi"
+            href="https://www.google.com/maps/search/?api=1&query=Aerovince+Dwarka+Sector+14+New+Delhi"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-full shadow-md hover:shadow-lg transition-all text-sm font-semibold hover:bg-gray-800"
@@ -128,14 +128,14 @@ const testimonials = [
   },
   {
     quote:
-      "Choosing Renvio was the best decision for our brand launch! Their AI-powered marketing strategies helped us grow...",
+      "Choosing Aerovince was the best decision for our brand launch! Their AI-powered marketing strategies helped us grow...",
     name: "Ashwani Singh",
     title: "Client",
     rating: 5,
   },
   {
     quote:
-      "Renvio World Pvt. Ltd. transformed my small business into a local favorite! Their digital marketing strategies,...",
+      "Aerovince World Pvt. Ltd. transformed my small business into a local favorite! Their digital marketing strategies,...",
     name: "Kaustubh",
     title: "Client",
     rating: 5,

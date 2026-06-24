@@ -1,202 +1,455 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
-import { ArrowRight, Star, TrendingUp, Shield, Zap, Users, Award, Rocket, Globe, BarChart3, Clock, CheckCircle2, Sparkles } from 'lucide-react';
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import {
+  TrendingUp,
+  Star,
+  Users,
+  Globe,
+  Rocket,
+  BarChart3,
+  Clock,
+  Shield,
+  Zap,
+  Target,
+  CheckCircle2,
+  ArrowRight,
+} from "lucide-react";
+
+// ─── DATA ───────────────────────────────────────────────────────────────────
+
+const programFeatures = [
+  {
+    id: 0,
+    icon: TrendingUp,
+    title: "Rapid Scale",
+    value: "3x",
+    metric: "Average Growth",
+    color: "#FF4D1C",
+    description: "Proven frameworks that accelerate your market traction",
+  },
+  {
+    id: 1,
+    icon: Shield,
+    title: "Enterprise Grade",
+    value: "99.9%",
+    metric: "Uptime & Reliability",
+    color: "#00E5FF",
+    description: "Infrastructure that scales with your business",
+  },
+  {
+    id: 2,
+    icon: Zap,
+    title: "Lightning Fast",
+    value: "2 Weeks",
+    metric: "Launch Timeline",
+    color: "#B8FF3C",
+    description: "From concept to market in record time",
+  },
+  {
+    id: 3,
+    icon: Users,
+    title: "Expert Team",
+    value: "50+",
+    metric: "Industry Experts",
+    color: "#C084FC",
+    description: "Dedicated specialists at your disposal",
+  },
+];
+
+const successMetrics = [
+  { label: "Revenue Growth", value: "+340%", color: "#FF4D1C" },
+  { label: "Client Satisfaction", value: "4.9★", color: "#00E5FF" },
+  { label: "Market Penetration", value: "3.8x", color: "#B8FF3C" },
+  { label: "User Acquisition", value: "100K+", color: "#C084FC" },
+];
+
+const timelineSteps = [
+  { week: "Week 1", title: "Discovery & Strategy", icon: Target },
+  { week: "Week 2", title: "Implementation", icon: Rocket },
+  { week: "Week 3", title: "Optimization", icon: BarChart3 },
+  { week: "Week 4", title: "Scale & Growth", icon: TrendingUp },
+];
+
+// ─── CUSTOM COMPONENTS ─────────────────────────────────────────────────────
+
+const AnimatedMetricCard = ({ feature, index, isActive }: any) => {
+  const Icon = feature.icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
+      whileHover={{ y: -5 }}
+      className={`group relative p-6 rounded-2xl transition-all duration-300 cursor-pointer ${
+        isActive
+          ? "bg-gray-900 text-white shadow-xl"
+          : "bg-white border border-gray-100 hover:border-gray-200"
+      }`}
+    >
+      <div className="flex items-start justify-between mb-4">
+        <div
+          className={`w-12 h-12 rounded-xl flex items-center justify-center ${isActive ? "bg-white/10" : "bg-gray-50"}`}
+        >
+          <Icon
+            className={`w-6 h-6 ${isActive ? "text-white" : "text-gray-700"}`}
+          />
+        </div>
+        <motion.div
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1 + 0.2, type: "spring" }}
+          className={`text-2xl font-bold ${isActive ? "text-white" : "text-gray-900"}`}
+          style={{ color: isActive ? "white" : feature.color }}
+        >
+          {feature.value}
+        </motion.div>
+      </div>
+
+      <h3
+        className={`text-lg font-bold mb-1 ${isActive ? "text-white" : "text-gray-900"}`}
+      >
+        {feature.title}
+      </h3>
+      <p
+        className={`text-sm mb-3 ${isActive ? "text-gray-300" : "text-gray-500"}`}
+      >
+        {feature.metric}
+      </p>
+      <p className={`text-xs ${isActive ? "text-gray-400" : "text-gray-400"}`}>
+        {feature.description}
+      </p>
+
+      <motion.div
+        className={`absolute bottom-0 left-0 h-0.5 rounded-b-2xl transition-all duration-300 ${
+          isActive ? "bg-white" : "bg-gray-900"
+        }`}
+        initial={{ width: "0%" }}
+        whileInView={{ width: "100%" }}
+        viewport={{ once: true }}
+        transition={{ delay: index * 0.1 + 0.3, duration: 0.6 }}
+      />
+    </motion.div>
+  );
+};
+
+const TimelineStep = ({ step, index, activeStep, onHover }: any) => {
+  const Icon = step.icon;
+  const isActive = activeStep === index;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
+      onMouseEnter={() => onHover(index)}
+      onMouseLeave={() => onHover(null)}
+      className="relative flex-1"
+    >
+      <div className="flex flex-col items-center text-center">
+        <motion.div
+          animate={{ scale: isActive ? 1.1 : 1 }}
+          className={`w-12 h-12 rounded-full flex items-center justify-center mb-3 transition-all duration-300 ${
+            isActive
+              ? "bg-gray-900 text-white shadow-lg"
+              : "bg-gray-100 text-gray-600"
+          }`}
+        >
+          <Icon className="w-5 h-5" />
+        </motion.div>
+
+        <div
+          className={`text-xs font-mono mb-1 ${isActive ? "text-gray-900 font-bold" : "text-gray-400"}`}
+        >
+          {step.week}
+        </div>
+        <div
+          className={`text-sm font-medium ${isActive ? "text-gray-900" : "text-gray-500"}`}
+        >
+          {step.title}
+        </div>
+
+        {index < timelineSteps.length - 1 && (
+          <div className="hidden lg:block absolute top-6 left-full w-full h-px bg-gray-200">
+            <motion.div
+              className="h-full bg-gray-900"
+              initial={{ width: "0%" }}
+              whileInView={{ width: isActive ? "100%" : "0%" }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 + 0.3 }}
+            />
+          </div>
+        )}
+      </div>
+    </motion.div>
+  );
+};
+
+// ─── MAIN COMPONENT ───────────────────────────────────────────────────────
 
 export default function StartupFeature() {
-    const [isVisible, setIsVisible] = useState(false);
-    const sectionRef = useRef<HTMLElement>(null);
+  const [activeMetric, setActiveMetric] = useState(0);
+  const [activeStep, setActiveStep] = useState<number | null>(0);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    observer.disconnect();
-                }
-            },
-            { threshold: 0.1 }
-        );
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
 
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
+  // Auto-rotate metrics
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveMetric((prev) => (prev + 1) % successMetrics.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative py-24 md:py-32 bg-gradient-to-b from-white to-gray-50 overflow-hidden"
+    >
+      {/* Animated Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-orange-100 rounded-full blur-3xl opacity-20" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-100 rounded-full blur-3xl opacity-20" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-emerald-100 to-purple-100 rounded-full blur-3xl opacity-10" />
+      </div>
+
+      {/* Dot Pattern */}
+      <div className="absolute inset-0 opacity-[0.015] pointer-events-none">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, #000 1px, transparent 1px)`,
+            backgroundSize: "32px 32px",
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        {/* Header Section */}
+        <motion.div
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.div
+            className="inline-flex items-center gap-2 bg-gray-900 text-white rounded-full px-4 py-1.5 mb-6"
+            initial={{ scale: 0.9 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 200 }}
+          >
+            <Rocket className="w-4 h-4" />
+            <span className="text-xs font-bold uppercase tracking-wider">
+              GTM Acceleration Program
+            </span>
+          </motion.div>
+
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+            Launch & Scale Your
+            <span className="relative inline-block mx-3">
+              Brand Globally
+              <motion.span
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gray-900 rounded-full"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              />
+            </span>
+          </h2>
+
+          <p className="text-gray-500 text-lg">
+            Enterprise-grade acceleration for ambitious B2C brands ready to
+            dominate their markets
+          </p>
+        </motion.div>
+
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          {programFeatures.map((feature, index) => (
+            <AnimatedMetricCard
+              key={feature.id}
+              feature={feature}
+              index={index}
+              isActive={hoveredCard === index}
+            />
+          ))}
+        </div>
+
+        {/* Success Metrics Row */}
+        <motion.div
+          className="bg-gray-900 rounded-2xl p-8 mb-20 overflow-hidden relative"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+        >
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:50px_50px]" />
+
+          <div className="relative z-10">
+            <div className="text-center mb-8">
+              <h3 className="text-white text-2xl font-bold mb-2">
+                Proven Track Record
+              </h3>
+              <p className="text-gray-400">Real results from real brands</p>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+              {successMetrics.map((metric, index) => (
+                <motion.div
+                  key={index}
+                  className="text-center"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <motion.div
+                    animate={{
+                      scale: activeMetric === index ? [1, 1.1, 1] : 1,
+                    }}
+                    transition={{ duration: 0.5 }}
+                    className="text-3xl md:text-4xl font-bold mb-1"
+                    style={{ color: metric.color }}
+                  >
+                    {metric.value}
+                  </motion.div>
+                  <div className="text-sm text-gray-400">{metric.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Timeline Section */}
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+        >
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">
+              Your 4-Week Launch Timeline
+            </h3>
+            <p className="text-gray-500">
+              From strategy to scale in record time
+            </p>
+          </div>
+
+          <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-4">
+            {timelineSteps.map((step, index) => (
+              <TimelineStep
+                key={index}
+                step={step}
+                index={index}
+                activeStep={activeStep}
+                onHover={setActiveStep}
+              />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div
+          className="relative rounded-2xl overflow-hidden"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6 }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-gray-800" />
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:250%_250%] animate-shimmer" />
+
+          <div className="relative z-10 p-8 md:p-12 text-center">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              Ready to Accelerate Your Growth?
+            </h3>
+            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+              Join 50+ brands that have scaled with our GTM program
+            </p>
+            <Link href="/contact">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-2 px-8 py-3 bg-white text-gray-900 rounded-full font-bold shadow-lg hover:shadow-xl transition-all group"
+              >
+                <span>Book Free Consultation</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </motion.button>
+            </Link>
+          </div>
+        </motion.div>
+
+        {/* Trust Indicators */}
+        <motion.div
+          className="mt-12 flex flex-wrap justify-center gap-6"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.7 }}
+        >
+          <div className="flex items-center gap-2">
+            <div className="flex gap-0.5">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-4 h-4 fill-gray-900 text-gray-900" />
+              ))}
+            </div>
+            <span className="text-sm text-gray-500">
+              4.9/5 from 100+ founders
+            </span>
+          </div>
+          <div className="w-px h-4 bg-gray-300 hidden sm:block" />
+          <div className="flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-gray-900" />
+            <span className="text-sm text-gray-500">ISO 27001 Certified</span>
+          </div>
+          <div className="w-px h-4 bg-gray-300 hidden sm:block" />
+          <div className="flex items-center gap-2">
+            <Globe className="w-4 h-4 text-gray-900" />
+            <span className="text-sm text-gray-500">Global Coverage</span>
+          </div>
+        </motion.div>
+      </div>
+
+      <style jsx>{`
+        @keyframes shimmer {
+          0% {
+            background-position: 0% 0%;
+          }
+          100% {
+            background-position: 200% 0%;
+          }
         }
-
-        return () => observer.disconnect();
-    }, []);
-
-    const features = [
-        { icon: TrendingUp, title: '3x Growth', desc: 'Average ROI increase', color: 'from-emerald-500 to-teal-500' },
-        { icon: Shield, title: '95% Retention', desc: 'Client satisfaction', color: 'from-blue-500 to-indigo-500' },
-        { icon: Zap, title: 'Fast Setup', desc: 'Launch in 2 weeks', color: 'from-amber-500 to-orange-500' },
-        { icon: Users, title: '50+ Brands', desc: 'Successfully scaled', color: 'from-purple-500 to-pink-500' },
-    ];
-
-    const benefits = [
-        { icon: BarChart3, text: 'Data-driven growth strategies' },
-        { icon: Globe, text: 'Cross-border market expansion' },
-        { icon: Rocket, text: 'Dedicated mentorship' },
-        { icon: Clock, text: 'Real-time analytics' },
-    ];
-
-    return (
-        <section ref={sectionRef} className="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
-            {/* Background Decor - same as before */}
-            <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-100 rounded-full blur-3xl opacity-30"></div>
-                <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-100 rounded-full blur-3xl opacity-30"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-emerald-50 to-blue-50 rounded-full blur-3xl opacity-20"></div>
-            </div>
-
-            <div className="container mx-auto px-6 max-w-7xl relative z-10">
-                
-                {/* Hero Section */}
-                <div className={`text-center max-w-3xl mx-auto mb-20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full px-4 py-1.5 mb-6 shadow-lg shadow-emerald-500/20">
-                        <Sparkles className="w-4 h-4 text-white" />
-                        <span className="text-xs font-bold uppercase tracking-wider text-white">GTM Acceleration Program</span>
-                    </div>
-                    <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-[1.2] tracking-tight">
-                        Scale Your B2C Brand
-                        <span className="bg-gradient-to-r from-emerald-500 to-green-500 bg-clip-text text-transparent block mt-2">
-                            Globally
-                        </span>
-                    </h1>
-                    <p className="text-lg text-gray-500 mb-8 max-w-2xl mx-auto">
-                        Born from Kestone Global's marketing DNA — proven strategies for ambitious consumer brands ready to dominate their markets.
-                    </p>
-                    
-                  
-                </div>
-
-                {/* Stats Row - with staggered animation */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
-                    {features.map((feature, idx) => {
-                        const Icon = feature.icon;
-                        return (
-                            <div 
-                                key={idx} 
-                                className={`group text-center p-6 rounded-2xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                                style={{ transitionDelay: `${idx * 100}ms` }}
-                            >
-                                <div className={`w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-r ${feature.color} flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300`}>
-                                    <Icon className="w-6 h-6 text-white" />
-                                </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-1">{feature.title}</h3>
-                                <p className="text-sm text-gray-500">{feature.desc}</p>
-                            </div>
-                        );
-                    })}
-                </div>
-
-                {/* Split Section */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    {/* Left Image */}
-                    <div className={`relative group transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-                        <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                            <div className="relative h-[500px] w-full bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse">
-                                {/* Replace with your actual image */}
-                                <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-                                    <Image 
-                                        src="/images/startup-cafe.png" 
-                                        alt="Growth" 
-                                        fill 
-                                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                                        onError={(e) => {
-                                            const target = e.target as HTMLImageElement;
-                                            target.style.display = 'none';
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                            {/* Gradient Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent"></div>
-                            
-                            {/* Floating Badge */}
-                            <div className="absolute bottom-6 left-6 right-6 bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300">
-                                <div className="flex items-center gap-3">
-                                    <div className="flex -space-x-2">
-                                        {[1,2,3,4].map((i) => (
-                                            <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-r  from-emerald-500 to-green-500 border-2 border-white flex items-center justify-center text-xs font-bold text-white">
-                                                {String.fromCharCode(64 + i)}
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <p className="text-white font-semibold text-sm">Trusted by 50+ industry leaders</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        {/* Decorative Elements */}
-                        <div className="absolute -top-4 -left-4 w-24 h-24 bg-emerald-400 rounded-full blur-2xl opacity-20 group-hover:opacity-30 transition-opacity pointer-events-none"></div>
-                        <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-blue-400 rounded-full blur-2xl opacity-20 group-hover:opacity-30 transition-opacity pointer-events-none"></div>
-                    </div>
-
-                    {/* Right Content */}
-                    <div className={`pl-0 lg:pl-8 transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-                        <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-1.5 mb-6">
-                            <Rocket className="w-4 h-4 text-green-500" />
-                            <span className="text-xs font-bold uppercase tracking-wider text-green-500">Ready to Scale?</span>
-                        </div>
-                        
-                        <h2 className="text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                            Take your brand to the 
-                            <span className="text-green-500"> next level</span>
-                        </h2>
-                        
-                        <p className="text-gray-600 mb-8 leading-relaxed text-lg">
-                            Our GTM Acceleration Program combines enterprise-grade frameworks with startup agility. 
-                            We help consumer brands unlock new markets, optimize customer acquisition, and scale sustainably.
-                        </p>
-                        
-                        <div className="space-y-4 mb-10">
-                            {benefits.map((benefit, i) => {
-                                const IconBenefit = benefit.icon;
-                                return (
-                                    <div 
-                                        key={i} 
-                                        className="flex items-center gap-3 group cursor-pointer transition-all duration-500"
-                                        style={{ transitionDelay: `${i * 100 + 600}ms`, opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-1rem)' }}
-                                    >
-                                        <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-emerald-100 to-green-100 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                            <IconBenefit className="w-4 h-4 text-green-500" />
-                                        </div>
-                                        <span className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors">
-                                            {benefit.text}
-                                        </span>
-                                        <CheckCircle2 className="w-4 h-4 text-emerald-500 ml-auto opacity-0 group-hover:opacity-100 transition-all duration-300" />
-                                    </div>
-                                );
-                            })}
-                        </div>
-                        
-                        {/* Trust Indicator */}
-                        <div className="flex items-center gap-4 pt-6 border-t border-gray-200">
-                            <div className="flex gap-1">
-                                {[...Array(5)].map((_, i) => (
-                                    <Star key={i} className="w-4 h-4 fill-emerald-500 text-emerald-500" />
-                                ))}
-                            </div>
-                            <span className="text-sm text-gray-600">
-                                Rated <span className="font-bold text-gray-900">4.9/5</span> by 100+ founders
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Bottom Banner */}
-                <div className={`mt-20 bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 text-center relative overflow-hidden transition-all duration-700 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                   <div className="relative z-10">
-                        <h3 className="text-2xl font-bold text-white mb-3">Ready to accelerate your growth?</h3>
-                        <p className="text-gray-300 mb-6">Join 50+ brands that have scaled with our GTM program</p>
-                        <button className="inline-flex items-center gap-2 px-8 py-3 bg-white text-gray-900 rounded-xl hover:bg-gray-100 hover:scale-105 transition-all duration-300 font-semibold shadow-lg group">
-                            <span>Book Free Consultation</span>
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+        .animate-shimmer {
+          animation: shimmer 3s ease infinite;
+        }
+      `}</style>
+    </section>
+  );
 }

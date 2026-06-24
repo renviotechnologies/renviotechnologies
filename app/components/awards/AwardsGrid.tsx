@@ -7,8 +7,8 @@ import { Trophy, Award, Star, Sparkles, Rocket, Target, Globe, Zap, Calendar, Tr
 const achievements = [
     {
         icon: Star,
-        title: "Founded Renvio Technologies",
-        desc: "Launched Renvio with a vision to revolutionize marketing through AI-powered solutions, helping brands achieve unprecedented growth through innovative strategies.",
+        title: "Founded Aerovince Technologies",
+        desc: "Launched Aerovince with a vision to revolutionize marketing through AI-powered solutions, helping brands achieve unprecedented growth through innovative strategies.",
         year: "2025",
         category: "Company Milestone",
         impact: "AI-Powered Marketing",
@@ -154,7 +154,7 @@ export default function AwardsGrid() {
                         The Journey Has Just Begun
                     </h3>
                     <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-                        Founded in 2025, Renvio is already making waves in the marketing industry. 
+                        Founded in 2025, Aerovince is already making waves in the marketing industry. 
                         With AI-powered solutions and a client-first approach, we're just getting started.
                     </p>
                     <div className="flex items-center justify-center gap-4">

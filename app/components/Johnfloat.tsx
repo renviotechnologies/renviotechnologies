@@ -17,7 +17,7 @@
 // const WELCOME_MESSAGE: Message = {
 //   role: "assistant",
 //   content:
-//     "Hello! I am John, your strategic advisor at RenvioTechnologies.\nHow can I help accelerate your business today?",
+//     "Hello! I am John, your strategic advisor at AerovinceTechnologies.\nHow can I help accelerate your business today?",
 // };
 
 // const SPEECH_TEXTS = [
@@ -648,7 +648,7 @@
 // const WELCOME_MESSAGE: Message = {
 //   role: "assistant",
 //   content:
-//     "Hello! I am John, your strategic advisor at RenvioTechnologies.\nHow can I help accelerate your business today?",
+//     "Hello! I am John, your strategic advisor at AerovinceTechnologies.\nHow can I help accelerate your business today?",
 // };
 
 // const SPEECH_TEXTS = [
@@ -1150,7 +1150,7 @@ const QUICK_CHIPS = [
 const WELCOME_MESSAGE: Message = {
   role: "assistant",
   content:
-    "Hello! I am John, your strategic advisor at RenvioTechnologies.\nHow can I help accelerate your business today?",
+    "Hello! I am John, your strategic advisor at AerovinceTechnologies.\nHow can I help accelerate your business today?",
 };
 
 const SPEECH_TEXTS = [

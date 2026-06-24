@@ -60,7 +60,7 @@ export default function AboutSection() {
                         transition={{ duration: 0.5 }}
                     >
                         <p className="text-gray-600 mb-4 leading-relaxed">
-                            Renvio – Powered by AI is a full-service startup building, branding, marketing, and technology company. 
+                            Aerovince – Powered by AI is a full-service startup building, branding, marketing, and technology company. 
                             We work as a growth partner, not a vendor — combining AI tools, human creativity, and execution clarity 
                             to deliver real business outcomes.
                         </p>

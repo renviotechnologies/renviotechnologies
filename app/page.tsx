@@ -17,10 +17,8 @@ import HomeContactSection from "./components/HomeContactSection";
 import CreativeShowcase from "./components/CreativeShowcase";
 import BookAppointmentSection from "./components/BookAppointmentSection";
 import JohnFloat from "./components/Johnfloat";
-
-
+import DashboardSection from "./components/DashboardSection";
 export default async function Home() {
-
   return (
     <main className="min-h-screen bg-white">
       <HeroSection />
@@ -37,13 +35,12 @@ export default async function Home() {
       <AboutSection />
       <CertificationsSection />
       <Testimonials />
-      <JohnFloat/>
+      <JohnFloat />
       <ReviewsSection />
       <HomeContactSection />
-
       {/* Floating WhatsApp Components */}
       {/* <WhatsAppMascot /> */}
-      <WhatsAppFloat /> 
+      <WhatsAppFloat />
     </main>
   );
 }

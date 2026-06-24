@@ -33,7 +33,7 @@ const founders = [
         expertise: "Social Media Expert | Operations & Strategy",
         image: "/images/virendra_parmar.jpeg",
         bio: "Operations expert with a passion for building scalable systems and processes. Ensures seamless delivery of exceptional client experiences.",
-        quote: "Excellence is not a skill, it's an attitude. We've built Renvio to deliver nothing short of exceptional results through streamlined operations.",
+        quote: "Excellence is not a skill, it's an attitude. We've built Aerovince to deliver nothing short of exceptional results through streamlined operations.",
         icon: Users,
         achievements: ["Operations Expert", "Client Satisfaction Leader", "Process Innovation"]
     }
@@ -57,7 +57,7 @@ export default function FounderQuote() {
                     <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6">
                         Behind{' '}
                         <span className="bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
-                            Renvio
+                            Aerovince
                         </span>
                     </h2>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">

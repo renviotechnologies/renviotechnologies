@@ -21,24 +21,24 @@ export default function Footer() {
                     <div>
                          <Link href="/" className="relative block w-40 h-12 mb-6">
                             <Image
-                                src="/images/renvio_logo.png"
-                                alt="Renvio"
+                                src="/images/aerovince_white.png"
+                                alt="Aerovince"
                                 fill
                                 className="object-contain"
                                 sizes="(max-width: 768px) 160px, 160px"
                             />
                         </Link>
                         <p className="text-gray-400 mb-6 text-sm leading-relaxed">
-                            Renvio – Powered by AI
+                            Aerovince – Powered by AI
                             <br />
-                            A Unit of Renvio World Private Limited
+                            A Unit of Aerovince World Private Limited
                         </p>
                         <div className="flex space-x-3">
                             {[
-                                { icon: Facebook, href: "https://www.facebook.com/renviotechnologies" },
-                                { icon: Twitter, href: "https://x.com/renviotechnologies" },
-                                { icon: Linkedin, href: "https://www.linkedin.com/company/renviotechnologies" },
-                                { icon: Instagram, href: "https://www.instagram.com/renviotechnologies/" }
+                                { icon: Facebook, href: "https://www.facebook.com/aerovincetechnologies" },
+                                { icon: Twitter, href: "https://x.com/aerovince.io" },
+                                { icon: Linkedin, href: "https://www.linkedin.com/company/Aerovincetechnologies" },
+                                { icon: Instagram, href: "https://www.instagram.com/aerovince.io/" }
                             ].map((social, i) => (
                                 <a
                                     key={i}
@@ -107,7 +107,7 @@ export default function Footer() {
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail size={18} className="text-gray-400 flex-shrink-0" />
-                                <span className="text-gray-400 text-sm">www.renviotechnologies.com</span>
+                                <span className="text-gray-400 text-sm">www.aerovincetechnologies.com</span>
                             </li>
                         </ul>
                     </div>
@@ -116,7 +116,7 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-gray-500 text-xs">
-                        © {new Date().getFullYear()} Renvio Technologies Private Limited. All Rights Reserved.
+                        © {new Date().getFullYear()} Aerovince Technologies Private Limited. All Rights Reserved.
                     </p>
                     
                     <div className="flex space-x-6">
